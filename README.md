@@ -10,7 +10,7 @@ Setting a `LinkMovementMethod` on the TextView resolved the wrong span clicked i
 
 Removing the AutoLinkMask set by `autoLink="email|phone"` resolved the issue since the conditions wouldn't be met to fire the 2nd onClick call, but removed the builtin email/phone link handling. Looking for alternate solution. 
 
-  Relevant Code in the TextView class
+  Relevant Code in the TextView class:
   
   ``` 
   if (mMovement != null) {
