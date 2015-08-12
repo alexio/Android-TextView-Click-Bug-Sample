@@ -1,4 +1,4 @@
-# Android-TextView-Click-Bug-Sample
+# Android TextView Click Bug Sample
 Sample app to show a possible bug(s) in TextView.class
 
 
