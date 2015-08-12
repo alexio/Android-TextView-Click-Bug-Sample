@@ -2,13 +2,15 @@
 Sample app to show a possible bug(s) in TextView.class
 
 
-  Was working with a TextView that had multiple ClickableSpans to differentiate between internal/external web links and had `autoLink=email|phone` to handle email/phone. When touching on one of the links, it would use a different span to handle the click on occassion. The TextView with id of `wrongClick` would demonstrate that behavior. 
+  Was working with a TextView that had multiple ClickableSpans to differentiate between internal/external web links and had `autoLink="email|phone"` to handle email/phone. When touching on one of the links, it would use a different span to handle the click on occassion. The TextView with id of `wrongClick` would demonstrate that behavior. 
 
 After looking through the code for `onTouch(MotionEvent event)` in the TextView class after running into a click related bug, I noticed that `ClickableSpan[] links = ((Spannable) mText).getSpans(getSelectionStart(),getSelectionEnd(), ClickableSpan.class);` was returning the wrong span.
 
 Setting a `LinkMovementMethod` on the TextView resolved the wrong span clicked issue but introduced a different issue. The onClick event of the span was firing twice. It would fire once from `LinkMovementMethod`'s `onTouch(MotionEvent event)` and another time after from a different `onClick` call in the TextView's `onTouch`.
 
-  Relevant Code in the TextView
+Removing the AutoLinkMask set by `autoLink="email|phone"` resolved the issue, but removed the builtin email/phone link handling. Looking to alternative solution. 
+
+  Relevant Code in the TextView class
   
   ``` 
   if (mMovement != null) {
@@ -29,5 +31,7 @@ Setting a `LinkMovementMethod` on the TextView resolved the wrong span clicked i
       }
   }
   ```
+  
+  Ideally, a second click event shouldn't be fired.
   
   
