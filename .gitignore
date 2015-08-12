@@ -1,0 +1,37 @@
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+
+bin
+gen
+externalRootPath
+local.properties
+codesign.properties
+production-app-releases.keystore
+release.keystore
+release.keystore.info
+*.apk
+
+#.settings
+proguard
+tmp/
+appcompat
+
+# Gradle
+.gradle/
+build/
+
+# Intelli J / Studio files
+
+.idea
+*.iml
+
+# Functional Tests
+nosetests.xml
+*.pyc
+archive.zip
+functionalTests/snapshots/
