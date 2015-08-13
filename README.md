@@ -34,5 +34,5 @@ Removing the AutoLinkMask set by `autoLink="email|phone"` resolved the issue sin
   
   Ideally, a second ClickableSpan click event shouldn't be fired.
   
-  Solution: Use Linkify instead of autoLink to add links so mAutoLinkMask won't be set and the second onClick call will be hit. Adding click handlers shouldn't have such edge cases imo.
+  **Solution:** Use Linkify instead of autoLink to add links so mAutoLinkMask won't be set and the second onClick call will be hit. Adding click handlers shouldn't have such edge cases imo.
   
