@@ -8,7 +8,7 @@ After looking through the code for `onTouch(MotionEvent event)` in the TextView 
 
 Setting a `LinkMovementMethod` on the TextView resolved the wrong span clicked issue since it used the `LinkMovementMethod`'s `OnTouch` to handle the click but introduced a different issue, the click event of the span was firing twice. It would fire once from `LinkMovementMethod`'s `onTouch(MotionEvent event)` and another time after from a different `onClick` call in the TextView's `onTouch`.
 
-Removing the AutoLinkMask set by `autoLink="email|phone"` resolved the issue since the conditions wouldn't be met to fire the 2nd onClick call, but removed the builtin email/phone link handling. Looking for alternate solution. 
+Removing the AutoLinkMask set by `autoLink="email|phone"` resolved the issue since the conditions wouldn't be met to fire the 2nd onClick call, but removed the builtin email/phone link handling. 
 
   Relevant Code in the TextView class:
   
@@ -34,4 +34,5 @@ Removing the AutoLinkMask set by `autoLink="email|phone"` resolved the issue sin
   
   Ideally, a second ClickableSpan click event shouldn't be fired.
   
+  Solution: Use Linkify instead of autoLink to add links so mAutoLinkMask won't be set and the second onClick call will be hit. Adding click handlers shouldn't have such edge cases imo.
   
